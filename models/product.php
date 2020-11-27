@@ -38,9 +38,10 @@ class Product extends Db {
         return $items; //return array
     }
 
-    function searchProduct($keyword) {
+    function searchProduct($keyword,$page,$perPage) {
        // $keyword = $_GET['key'];
-        $sql = self::$connection->prepare("SELECT * FROM products WHERE `name` LIKE ?");
+        $firstLink = ($page - 1) * $perPage;
+        $sql = self::$connection->prepare("SELECT * FROM products WHERE `name` LIKE ? LIMIT $firstLink,$perPage");
         $keyword = "%".$keyword."%";
         $sql->bind_param("s",$keyword);
         $sql->execute(); //return an Object
