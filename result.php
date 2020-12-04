@@ -12,20 +12,17 @@
         }
         else {
             
-            $page = isset($_GET['page']) ? $_GET['page'] : 1;
-            //Search
-            $key_word = $_GET['key'];
-            $search_lists = $product->searchProduct($key_word,$page,7);
-            var_dump(count($search_lists));
-            if (isset($_GET['key'])) {
-                $key = "key=$key_word";
-            }
             //Pagination
             $paginate = new Pagination;
-            $perPage = 2;
-            $total = count($search_lists);
+            $page = isset($_GET['page']) ? $_GET['page'] : 1;
+            $perPage = 3;
             $url = $_SERVER['PHP_SELF'];
-            echo $paginate->paginate($url,$total,$page,$perPage,$key);
+            //Search
+            $key_word = $_GET['key'];
+            $total = count($product->getAllSearch($key_word));
+            //var_dump($total);
+            $search_lists = $product->searchProduct($key_word,$page,$perPage);
+            //var_dump($search_lists);
         }
     }
     else {
@@ -77,3 +74,9 @@
                         </div>
                         <?php } ?>
                         <ul class="pagination col-sm-12">
+                            <?php
+                            if (isset($_GET['key'])) {
+                                $key = "key=$key_word";
+                            }
+                            echo $paginate->paginate($url,$total,$page,$perPage,$key); ?>
+                        </ul>

@@ -38,6 +38,16 @@ class Product extends Db {
         return $items; //return array
     }
 
+    function getAllSearch($keyword) {
+         $sql = self::$connection->prepare("SELECT * FROM products WHERE `name` LIKE ? ");
+         $keyword = "%".$keyword."%";
+         $sql->bind_param("s",$keyword);
+         $sql->execute(); //return an Object
+         $items = array();
+         $items = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
+         return $items; //return array
+     }
+
     function searchProduct($keyword,$page,$perPage) {
        // $keyword = $_GET['key'];
         $firstLink = ($page - 1) * $perPage;
