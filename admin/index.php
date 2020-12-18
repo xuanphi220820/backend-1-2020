@@ -19,7 +19,7 @@
             <div class="row-fluid">
                 <div class="span12">
                     <div class="widget-box">
-                        <div class="widget-title"> <span class="icon"><a href="form.html"> <i class="icon-plus"></i>
+                        <div class="widget-title"> <span class="icon"><a href="form.php"> <i class="icon-plus"></i>
                                 </a></span>
                             <h5>Products</h5>
                         </div>
@@ -52,7 +52,7 @@
                                         <td><?= $value['feature']?></td>
                                         <td><?= $value['created_at']?></td>
                                         <td>
-                                            <a href="#45" class="btn btn-success btn-mini">Edit</a>
+                                            <a href="edit-product.php?id=<?= $value['id']?>" class="btn btn-success btn-mini">Edit</a>
                                             <a href="action/delete.php?id=<?= $value['id']?>" class="btn btn-danger btn-mini">Delete</a>
                                         </td>
                                     </tr>

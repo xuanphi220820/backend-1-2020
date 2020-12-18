@@ -17,7 +17,7 @@ require "models/manufactures.php";
             <div class="row-fluid">
                 <div class="span12">
                     <div class="widget-box">
-                        <div class="widget-title"> <span class="icon"><a href="form.html"> <i class="icon-plus"></i>
+                        <div class="widget-title"> <span class="icon"><a href="form-manu.php"> <i class="icon-plus"></i>
                                 </a></span>
                             <h5>Manufacture</h5>
                         </div>
