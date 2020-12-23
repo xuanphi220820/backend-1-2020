@@ -37,7 +37,7 @@
                                             <td><?= $value['type_name']?></td>
 
                                             <td>
-                                                <a href="edit.html" class="btn btn-success btn-mini">Edit</a>
+                                                <a href="edit-type.php?id=<?=$value['type_id']?>" class="btn btn-success btn-mini">Edit</a>
                                                 <form action="" method="">
                                                     <input type="submit" class="btn btn-danger btn-mini" value="Delete">
                                                 </form>
