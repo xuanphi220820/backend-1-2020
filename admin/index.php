@@ -1,10 +1,13 @@
-<?php include "layouts/layout_top.php" ?>
 <?php 
+include "layouts/layout_top.php" 
+?>
+<?php 
+
     require "models/product.php";
     $product = new ProductAdmin;
     $allProduct = $product->getAll();
     //var_dump($allProduct);
-
+    var_dump($_SESSION['username']);
     
 ?>
 <!-- BEGIN CONTENT -->
@@ -19,7 +22,7 @@
             <div class="row-fluid">
                 <div class="span12">
                     <div class="widget-box">
-                        <div class="widget-title"> <span class="icon"><a href="form.php"> <i class="icon-plus"></i>
+                        <div class="widget-title"> <span class="icon"><a href="form-product.php"> <i class="icon-plus"></i>
                                 </a></span>
                             <h5>Products</h5>
                         </div>
@@ -73,19 +76,4 @@
         </div>
     </div>
     <!-- END CONTENT -->
-    <!--Footer-part-->
-    <div class="row-fluid">
-        <div id="footer" class="span12"> 2017 &copy; TDC - Lập trình web 1</div>
-    </div>
-    <!--end-Footer-part-->
-    <script src="js/jquery.min.js"></script>
-    <script src="js/jquery.ui.custom.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.uniform.js"></script>
-    <script src="js/select2.min.js"></script>
-    <script src="js/jquery.dataTables.min.js"></script>
-    <script src="js/matrix.js"></script>
-    <script src="js/matrix.tables.js"></script>
-</body>
-
-</html>
+    <?php include "layouts/layout_bottom.php" ?>

@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <?php
@@ -8,7 +9,7 @@ require "models/db.php";
     <title>Mobile Admin</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" href="../images/logo.png" type="image/icon type">
+    <link rel="icon" href="../../public/images/icon/logo.png" type="image/icon type">
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/bootstrap-responsive.min.css" />
     <link rel="stylesheet" href="css/uniform.css" />
@@ -52,7 +53,7 @@ require "models/db.php";
                     <li class="divider"></li>
                     <li><a href="#"><i class="icon-check"></i> My Tasks</a></li>
                     <li class="divider"></li>
-                    <li><a href="logout.html"><i class="icon-key"></i> Log Out</a></li>
+                    <li><a href="../../user/logout.php"><i class="icon-key"></i> Log Out</a></li>
                 </ul>
             </li>
             <li class="dropdown" id="menu-messages"><a href="#" data-toggle="dropdown" data-target="#menu-messages"
@@ -69,7 +70,7 @@ require "models/db.php";
                 </ul>
             </li>
             <li class=""><a title="" href="#"><i class="icon icon-cog"></i> <span class="text">Settings</span></a></li>
-            <li class=""><a title="" href="logout.html"><i class="icon icon-share-alt"></i> <span
+            <li class=""><a title="" href="../user/logout.php"><i class="icon icon-share-alt"></i> <span
                         class="text">Logout</span></a></li>
         </ul>
     </div>

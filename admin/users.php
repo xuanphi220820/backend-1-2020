@@ -1,4 +1,10 @@
 <?php include "layouts/layout_top.php" ?>
+<?php
+require "models/user.php";
+$user = new User;
+$allUser = $user->getAllUser();
+//var_dump($allUser);
+?>
 <!-- BEGIN CONTENT -->
     <div id="content">
         <div id="content-header">
@@ -27,30 +33,28 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr class="">
-                                        <td>2</td>
-                                        <td>user1</td>
-                                        <td>*****</td>
-                                        <td>admin</td>
-                                        <td>
-                                            <a href="edit.html" class="btn btn-success btn-mini">Edit</a>
-                                            <form action="" method="">
-                                                <input type="submit" class="btn btn-danger btn-mini" value="Delete">
-                                            </form>
-                                        </td>
-                                    </tr>
-                                    <tr class="">
-                                        <td>3</td>
-                                        <td>guest</td>
-                                        <td>*****</td>
-                                        <td>editor</td>
-                                        <td>
-                                            <a href="edit.html" class="btn btn-success btn-mini">Edit</a>
-                                            <form action="" method="">
-                                                <input type="submit" class="btn btn-danger btn-mini" value="Delete">
-                                            </form>
-                                        </td>
-                                    </tr>
+                                    <?php foreach($allUser as $key => $value) { ?>
+                                        <tr class="">
+                                            <td><?= $key+1?></td>
+                                            <td><?=$value['username']?></td>
+                                            <td><?=substr_replace($value['password'],'*******************',0)?></td>
+                                            <td>
+                                                <?php if ($value['role_id'] == 1) { ?>
+                                                admin
+                                                <?php } elseif ($value['role_id']== 2) { ?>
+                                                user
+                                                <?php } else { ?>
+                                                guest
+                                                <?php } ?>
+                                            </td>
+                                            <td>
+                                                <a href="edit.html" class="btn btn-success btn-mini">Edit</a>
+                                                <form action="" method="">
+                                                    <input type="submit" class="btn btn-danger btn-mini" value="Delete">
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    <?php } ?>
                                 </tbody>
                             </table>
                             <div class="row" style="margin-left: 18px;">
@@ -67,19 +71,4 @@
         </div>
     </div>
     <!-- END CONTENT -->
-    <!--Footer-part-->
-    <div class="row-fluid">
-        <div id="footer" class="span12"> 2017 &copy; TDC - Lập trình web 1</div>
-    </div>
-    <!--end-Footer-part-->
-    <script src="js/jquery.min.js"></script>
-    <script src="js/jquery.ui.custom.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.uniform.js"></script>
-    <script src="js/select2.min.js"></script>
-    <script src="js/jquery.dataTables.min.js"></script>
-    <script src="js/matrix.js"></script>
-    <script src="js/matrix.tables.js"></script>
-</body>
-
-</html>
+    <?php include "layouts/layout_bottom.php" ?>
