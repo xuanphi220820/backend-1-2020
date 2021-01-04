@@ -1,6 +1,9 @@
+
 <?php
+session_start();
 require "config.php";
 require "models/db.php";
+//var_dump( $_SESSION["username"]);
 ?>
 <!DOCTYPE html>
 <html lang="en">

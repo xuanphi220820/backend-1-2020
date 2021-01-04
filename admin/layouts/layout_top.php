@@ -4,6 +4,10 @@
 <?php
 require "../config.php";
 require "models/db.php";
+if(!isset($_SESSION['username']) || $_SESSION['username'] == '') {
+    header('Location:../login/index.php');
+}
+//var_dump($_SESSION['username']);
 ?>
 <head>
     <title>Mobile Admin</title>

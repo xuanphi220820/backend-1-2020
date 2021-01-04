@@ -6,29 +6,38 @@
 
 	$user = new User;
 
-	if(isset($_POST['user']) && isset($_POST['pass'])) {
-		$username = $_POST['user'];
-		$password = $_POST['pass'];
-
-		$login = $user->login($username);
-		$userLogin = isset($login[0]['username']) ? $login[0]['username']: '';
-		$passLogin = isset($login[0]['password']) ? $login[0]['password'] : '';
-		if ($username == $userLogin && password_verify($password,$passLogin)) {
-			$_SESSION['loggedin'] = true;
-			$_SESSION['username'] = $username;
-			header('Location:../admin/index.php');
+	if(isset($_POST['submit'])) {
+		if (!isset($_POST['user'])) {
+			$mess_err = "Username is required";
+		} elseif (!isset($_POST['pass'])) {
+			$mess_err = "Password is required";
+		} elseif (!isset($_POST['passAgain'])) {
+			$mess_err = "Password again is required";
 		} else {
-			$mess_err = "Username hoặc Password không chính xác !!!";
+			$username = $_POST['user'];
+			if ($_POST['passAgain'] != $_POST['pass']) {
+				$mess_err = "Password confirm are not matching";
+			} else {
+				$password = $_POST['pass'];
+				$hashPass = password_hash($password, PASSWORD_DEFAULT);
+				$password_again = $_POST['passAgain'];
+			}
+		}
+
+		$login = $user->register($username,$hashPass);
+		if (!isset($mess_err)) {
+			header('Location:index.php');
+		} else {
+			$mess_err = "Something went wrong. Please try again later.";
 		}
 	}
 
-	//var_dump($_SESSION['username']);
-	//var_dump($username,$password,$userLogin,$passLogin,$hashPass,password_verify($password,$passLogin));
+	//var_dump($username,$password,$password_again,$hashPass);
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Login</title>
+	<title>Register</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
@@ -58,12 +67,12 @@
 					<img src="images/img-01.png" alt="IMG">
 				</div>
 
-				<form action="index.php" method="post" class="login100-form validate-form">
+				<form action="register.php" method="post" class="login100-form validate-form">
 					<span class="login100-form-title">
-						Login
+						Register
 					</span>
 
-					<div class="wrap-input100 validate-input" data-validate = "Valid user is required: ex@abc.xyz">
+					<div class="wrap-input100 validate-input" data-validate = "Valid user is required">
 						<input class="input100" type="text" name="user" placeholder="Username">
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
@@ -78,29 +87,27 @@
 							<i class="fa fa-lock" aria-hidden="true"></i>
 						</span>
 					</div>
+					<div class="wrap-input100 validate-input" data-validate = "Password again is required">
+						<input class="input100" type="password" name="passAgain" placeholder="Password Again">
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-lock" aria-hidden="true"></i>
+						</span>
+					</div>
 					<?php 
 					if (isset($mess_err)) { ?>
 					<span style="color: red; font-size: 12px;"><?=$mess_err?></span>
 					<?php } ?>
 					<div class="container-login100-form-btn">
 						<button type="submit" name="submit" class="login100-form-btn">
-							Login
+							Register
 						</button>
 					</div>
-
-					<div class="text-center p-t-12">
-						<span class="txt1">
-							Forgot
-						</span>
-						<a class="txt2" href="#">
-							Username / Password?
-						</a>
-					</div>
-
 					<div class="text-center p-t-136">
-						<a class="txt2" href="register.php">
-							Create your Account
-							<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
+						Already have an account?
+						<a class="txt2" href="index.php">
+							Login here
+							<!-- <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i> -->
 						</a>
 					</div>
 				</form>

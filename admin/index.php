@@ -7,7 +7,7 @@ include "layouts/layout_top.php"
     $product = new ProductAdmin;
     $allProduct = $product->getAll();
     //var_dump($allProduct);
-    var_dump($_SESSION['username']);
+    //var_dump($_SESSION['username']);
     
 ?>
 <!-- BEGIN CONTENT -->
